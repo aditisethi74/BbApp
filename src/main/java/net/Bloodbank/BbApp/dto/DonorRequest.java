@@ -14,7 +14,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor(staticName = "build")
+@AllArgsConstructor
 @NoArgsConstructor
 public class DonorRequest {
 
@@ -24,11 +24,13 @@ public class DonorRequest {
 	private String lastName;
 
 	@NotNull(message = "Enter among MALE,FEMALE,OTHERS")
-	private enum gender {
+	 enum gender {
 		MALE, FEMALE, OTHERS
 	};
+	
 
-	@NotNull(message="Please Enter Valid BloodGroup Type")private enum bloodGroup{Apos,Aneg,Bpos,Bneg,ABpos,ABneg,Opos,Oneg};
+	@NotNull(message="Please Enter Valid BloodGroup Type")
+	 enum bloodGroup{Apos,Aneg,Bpos,Bneg,ABpos,ABneg,Opos,Oneg};
 
 	@Min(value = 18, message = "must be a greater than or equal to 18")
 	@Max(value = 60, message = "must be less than or equal to 60")

@@ -1,8 +1,11 @@
 package net.Bloodbank.BbApp.controller;
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
-//import java.util.List;
+
 //import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +28,13 @@ import net.Bloodbank.BbApp.repository.DonorRepository;
 import net.Bloodbank.BbApp.service.DonorService;
 //import net.Bloodbank.BbApp.service.DonorService;
 
+
 @RestController
 
 public class DonorControllor {
 	@Autowired
 	private DonorService donorService;
-	// @Autowired private DonorRequest donorRequest;
+	
 	
 	// @GetMapping("/donor")
 	/*
@@ -39,11 +43,15 @@ public class DonorControllor {
 	 * entityToDto(donors).findAll();
 	 */
 	
-	  public List<DonorRequest> getAllDonor() {
+	 /* public List<DonorRequest> getAllDonor() {
 	   List<Donor>donors=donorService.findAll();
-	   List<DonorRequest> dtos=donorService.entityToDto(donors);
-	   return dtos; 
+	   for(Donor donor:donors) {
+	   DonorRequest dtos=donorService.entityToDto(donor);
 	   }
+	  //List<DonorRequest>dtoList=new ArrayList<>();
+	
+	   return   dtos; }
+	   
 	 
 	@GetMapping("/donor/{id}")
 	public ResponseEntity<DonorRequest> getDonorId(@PathVariable int id) {
@@ -58,22 +66,86 @@ public class DonorControllor {
 		Donor donor = donorService.dtoToEntity(donorRequest);
 		donorService.save(donor);
 		return donorService.entityToDto(donor);
-	}
+	}*/
 
 	/*
-	 * @PostMapping("/donor") public Donor createDonor(@RequestBody Donor donor) {
-	 * return donorService.save(donor); }
-	 */
+	  @PostMapping("/donor") 
+	  public ResponseEntity<Donor> createDonor(@RequestBody Donor donor) {
+	  Donor donorCreated=donorService.createDonor(donor);
+	  return new ResponseEntity<>(donorCreated,HttpStatus.CREATED); 
+	  }
 
-	/*
-	 * @GetMapping("/donor/{id}") public ResponseEntity<Donor>
-	 * getDonorId(@PathVariable int id) { Donor donor = donorService.findById(id);
-	 * return ResponseEntity.ok(donor);
-	 * 
-	 * }
-	 */
-
-	/*@PutMapping("/donor{id}")
+	
+	  @GetMapping("/donor/{id}") 
+	  public ResponseEntity<Donor>getDonorById(@PathVariable int id) {
+	   Donor donor = donorService.getDonorById(id);
+	  return new ResponseEntity<>(donor,HttpStatus.OK);
+	  
+	  }
+	
+	  /*@GetMapping("/donor")
+	    public ResponseEntity<List<Donor>> getAllDonor(){
+	        List<Donor> donor = donorService.getAllDonor();
+	        return new ResponseEntity<>(donor, HttpStatus.OK);
+	    }/*
+	  
+	  @PutMapping("{id}")
+	    
+	    public ResponseEntity<Donor> updateDonor(@PathVariable int id, @RequestBody Donor donor){
+	        donor.setId(id);
+	        Donor updatedDonor = donorService.updateDonor(donor);
+	        return new ResponseEntity<>(updatedDonor, HttpStatus.OK);
+	    }
+	  
+	  @DeleteMapping("{id}")
+	    public ResponseEntity<String> deleteDonor(@PathVariable int id){
+	        donorService.deleteDonorById(id);
+	        return new ResponseEntity<>("Donor successfully deleted!", HttpStatus.OK);
+	  } */
+	  
+	// Api using dto
+	  
+	  @PostMapping("/donor")
+	    public ResponseEntity<DonorRequest> createUser(@RequestBody DonorRequest donorRequest){
+	        DonorRequest savedDonor = donorService.createDonor(donorRequest);
+	        return new ResponseEntity<>(savedDonor, HttpStatus.CREATED);
+	    }
+	  
+	  @GetMapping("{id}")
+	    public ResponseEntity<DonorRequest> getUserById(@PathVariable int id){
+	     DonorRequest   donor = donorService.getDonorById(id);
+	        return new ResponseEntity<>(donor, HttpStatus.OK);
+	  }
+	  
+	  @GetMapping("/donor")
+	    public ResponseEntity<List<DonorRequest>> getAllDonor(){
+	        List<DonorRequest> donor = donorService.getAllDonor();
+	        return new ResponseEntity<>(donor, HttpStatus.OK);
+	  }
+	
+	  @PutMapping("{id}")
+	    
+	    public ResponseEntity<DonorRequest> updateDonor(@PathVariable int id ,
+	                                           @RequestBody DonorRequest donorRequest){
+	        donorRequest.setId(id);
+	        DonorRequest updatedDonor = donorService.updateDonor(donorRequest);
+	        return new ResponseEntity<>(updatedDonor, HttpStatus.OK);
+	  }
+	
+	  @DeleteMapping("{id}")
+	    public ResponseEntity<String> deleteUser(@PathVariable int id){
+	        donorService.deleteDonor(id);
+	        return new ResponseEntity<>("User successfully deleted!", HttpStatus.OK);
+	    }
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  /*@PutMapping("/donor{id}")
 	public ResponseEntity<Donor> updateDonor(@PathVariable int id, @RequestBody Donor donorDetails) {
 		Donor updateDonor = donorService.findById(id);
 		updateDonor.setAddress(donorDetails.getAddress());
@@ -91,14 +163,14 @@ public class DonorControllor {
 	}*/
 
 
-@DeleteMapping("/donor/{id}")
-public ResponseEntity<HttpStatus> deleteDonor(@PathVariable int id) {
+//@DeleteMapping("/donor/{id}")
+//public ResponseEntity<HttpStatus> deleteDonor(@PathVariable int id) {
 	// Donor donor =donorService.findById(id);
-	donorService.deleteById(id);
-	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	//donorService.deleteById(id);
+	//return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
 }
-}
+///}
 
 /*@PutMapping("/donor{id}")
 public ResponseEntity<DonorRequest> updateDonor(@PathVariable int id, @RequestBody DonorRequest donorRequestDetails) {

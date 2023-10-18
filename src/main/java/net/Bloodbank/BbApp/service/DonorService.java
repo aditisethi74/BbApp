@@ -6,15 +6,24 @@ import java.util.List;
 
 
 public interface DonorService {
+//Donor createDonor(Donor donor);
+//List<Donor> getAllDonor();
+//Donor getDonorById(int id);
+//Donor updateDonor(Donor donor);
+//void deleteDonorById(int id);
+// Donor dtoToEntity(DonorRequest donorRequest);  
+// DonorRequest entityToDto(Donor donor );
+///list of methods using dto
+ DonorRequest createDonor(DonorRequest donorRequest);
 
-List<Donor> findAll();
-Donor findById(int id);
-Donor save(Donor donor);
-void deleteById(int id);
- Donor dtoToEntity(DonorRequest donorRequest);  
- DonorRequest entityToDto(Donor donor );
+ DonorRequest getDonorById(int id);
 
+ List<DonorRequest> getAllDonor();
 
+ DonorRequest updateDonor(DonorRequest donor);
 
-
+ void deleteDonor(int id);
 }
+
+
+
