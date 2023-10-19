@@ -6,6 +6,7 @@ import net.Bloodbank.BbApp.model.Donor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DonorMapper {
+	
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -15,19 +16,19 @@ public class DonorMapper {
 	private String city;
 	private String contactNumber;
 	private String bloodGroup;
-	
+	private String gender;
 	 public static DonorRequest mapToDonorRequest(Donor donor){
-	        DonorRequest donorRequest = new DonorRequest();
+     DonorRequest donorRequest = new DonorRequest();
 	donorRequest.setId(donor.getId());
 	donorRequest.setFirstName(donor.getFirstName());
 	donorRequest.setLastName(donor.getLastName());
 	donorRequest.setEMail(donor.getEMail());
 	donorRequest.setAddress(donor.getAddress());
 	donorRequest.setAge(donor.getAge());
-	//donorRequest.setBloodGroup(donor.getBloodGroup());
+	donorRequest.setBloodGroupType(donor.getBloodGroupType());
 	donorRequest.setCity(donor.getCity());
 	donorRequest.setContactNumber(donor.getContactNumber());
-	//donorRequest.setGender(donor.getGender());
+	donorRequest.setGenderType(donor.getGenderType());
 	                 return donorRequest;
 	 }
 	 
@@ -39,9 +40,9 @@ public class DonorMapper {
 	 donor.setEMail(donorRequest.getEMail());
 	 donor.setAddress(donorRequest.getAddress());
 	 donor.setAge(donorRequest.getAge());
-	// donor.setBloodGroup(donorRequest.getBloodGroup());
+	 donor.setBloodGroupType(donorRequest.getBloodGroupType());
      donor.setCity(donorRequest.getCity());
-     //donor.setGender(donorRequest.getGender()); 
+     donor.setGenderType(donorRequest.getGenderType()); 
      donor.setContactNumber(donorRequest.getContactNumber());	
      return donor;
 	 
