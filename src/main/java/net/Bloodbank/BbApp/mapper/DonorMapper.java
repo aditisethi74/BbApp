@@ -14,6 +14,7 @@ public class DonorMapper {
 	private String address;
 	private String city;
 	private String contactNumber;
+	private String bloodGroup;
 	
 	 public static DonorRequest mapToDonorRequest(Donor donor){
 	        DonorRequest donorRequest = new DonorRequest();

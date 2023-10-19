@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import net.Bloodbank.BbApp.dto.DonorRequest;
 //import net.Bloodbank.BbApp.exception.ResourceNotFoundException;
 import net.Bloodbank.BbApp.model.Donor;
@@ -106,7 +107,7 @@ public class DonorControllor {
 	// Api using dto
 	  
 	  @PostMapping("/donor")
-	    public ResponseEntity<DonorRequest> createUser(@RequestBody DonorRequest donorRequest){
+	    public ResponseEntity<DonorRequest> createUser(@RequestBody @Valid DonorRequest donorRequest){
 	        DonorRequest savedDonor = donorService.createDonor(donorRequest);
 	        return new ResponseEntity<>(savedDonor, HttpStatus.CREATED);
 	    }

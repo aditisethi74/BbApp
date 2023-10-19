@@ -78,7 +78,7 @@ public Donor createDonor(Donor donor) {
 
         Donor savedDonor = donorRepository.save(donor);
 
-        // Convert User JPA entity to UserDto
+        // Convert Donor JPA entity to DonorRequest
         DonorRequest savedDonorRequest = DonorMapper.mapToDonorRequest(savedDonor);
 
         return savedDonorRequest;
