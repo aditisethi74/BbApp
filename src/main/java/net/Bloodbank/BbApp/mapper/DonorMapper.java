@@ -28,7 +28,7 @@ public class DonorMapper {
 	donorRequest.setBloodGroupType(donor.getBloodGroupType());
 	donorRequest.setCity(donor.getCity());
 	donorRequest.setContactNumber(donor.getContactNumber());
-	donorRequest.setGenderType(donor.getGenderType());
+	donorRequest.setGender(donor.getGender());
 	                 return donorRequest;
 	 }
 	 
@@ -42,7 +42,7 @@ public class DonorMapper {
 	 donor.setAge(donorRequest.getAge());
 	 donor.setBloodGroupType(donorRequest.getBloodGroupType());
      donor.setCity(donorRequest.getCity());
-     donor.setGenderType(donorRequest.getGenderType()); 
+     donor.setGender(donorRequest.getGender()); 
      donor.setContactNumber(donorRequest.getContactNumber());	
      return donor;
 	 

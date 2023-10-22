@@ -1,6 +1,6 @@
 package net.Bloodbank.BbApp.service;
 import net.Bloodbank.BbApp.dto.DonorRequest;
-import net.Bloodbank.BbApp.model.*;
+
 import java.util.List;
 
 
@@ -23,6 +23,11 @@ public interface DonorService {
  DonorRequest updateDonor(DonorRequest donor);
 
  void deleteDonor(int id);
+ 
+   
+ 
+ 
+ 
 }
 
 

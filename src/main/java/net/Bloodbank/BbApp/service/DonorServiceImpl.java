@@ -21,55 +21,18 @@ import net.Bloodbank.BbApp.repository.DonorRepository;
 
 public class DonorServiceImpl implements DonorService {
 	@Autowired private DonorRepository donorRepository;
-   // @Autowired private ModelMapper modelMapper;	
-    //@Autowired private DonorRequest donorRequest;
+
+
 	public DonorServiceImpl(DonorRepository donorRepository) {
 		super();
 		this.donorRepository = donorRepository;
 	}
-	/*public Donor dtoToEntity(DonorRequest donorRequest ) {
-	Donor donor=this.modelMapper.map(donorRequest, Donor.class);
-	return donor;
-	}
-	public DonorRequest entityToDto(Donor donor ) {
-		DonorRequest dto=this.modelMapper.map(donor, DonorRequest.class);
-		return dto;
-		}*/
-/*	
-@Override
-public Donor createDonor(Donor donor) {
-	return donorRepository.save(donor);
-}*/
-	
-/*	
-	@Override
-	public List<Donor> getAllDonor() {
 
-		return donorRepository.findAll();
-	}*/
 
-/*	@Override
-	public Donor getDonorById(int id) {
-		Optional<Donor>optionalDonor = donorRepository.findById(id);
-		return optionalDonor.get();
-	}*/	
-		
 
-/*	@Override
-	public Donor updateDonor(Donor donor) {
-	Donor existingDonor=donorRepository.findById(donor.getId()).get();	
-		 donorRepository.save(existingDonor);
-	return existingDonor;
-	}*/
-
-/*	@Override
-	public void deleteDonorById(int id) {
-		donorRepository.deleteById(id);
-	}*/
 	
 	
-	
-///methods implemented using dto
+///------>Methods Implemented Using DTO <-------------------
 	
 	@Override
 	public DonorRequest createDonor(DonorRequest donorRequest) {
@@ -88,6 +51,7 @@ public Donor createDonor(Donor donor) {
     public DonorRequest getDonorById(int id) {
         Optional<Donor> optionalDonor = donorRepository.findById(id);
         Donor donor = optionalDonor.get();
+        
         return DonorMapper.mapToDonorRequest(donor);
     }	
 		
@@ -115,8 +79,13 @@ public Donor createDonor(Donor donor) {
 	        donorRepository.deleteById(id);
 	    }
 	
+		  
+		  
+		  
+		  
+	  }
 	
-	}
+	
 
 	
 
