@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import jakarta.persistence.Column;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,6 +14,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
 
 @ToString
 @Setter
@@ -26,12 +29,12 @@ public class Donor {
 	private String firstName;
 	@Column(name = "last_name")
 	private String lastName;
-	@Column(name = "gender")
-	private String gender;
+	//@Column(name = "gender")
+	//private String gender;
 	@Column(name = "age")
 	private int age;
-	@Column(name = "blood_group")
-	private String bloodGroup;
+	//@Column(name = "blood_group")
+	//private String bloodGroup;
 	@Column(name = "e_mail")
 	private String eMail;
 	@Column(name = "contact_number")
@@ -40,5 +43,15 @@ public class Donor {
 	private String city;
 	@Column(name = "address")
 	private String address;
+	
+	 @Enumerated(EnumType.STRING)
+	//private  GenderType genderType;
+	 private GenderType gender;
+	 
+	@Enumerated(EnumType.STRING)
+	private  BloodGroupType bloodGroupType;
+	
+		
+	
 
 }

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import net.Bloodbank.BbApp.dto.DonorRequest;
@@ -35,6 +36,7 @@ public class DonorServiceImpl implements DonorService {
 ///------>Methods Implemented Using DTO <-------------------
 	
 	@Override
+	//@Scheduled(fixedRate=5000)
 	public DonorRequest createDonor(DonorRequest donorRequest) {
 		 // Convert DonorRequest into Donor JPA Entity
         Donor donor = DonorMapper.mapToDonor(donorRequest);
@@ -78,7 +80,13 @@ public class DonorServiceImpl implements DonorService {
 	    public void deleteDonor(int id ) {
 	        donorRepository.deleteById(id);
 	    }
-	
+
+
+
+
+
+
+
 		  
 		  
 		  
