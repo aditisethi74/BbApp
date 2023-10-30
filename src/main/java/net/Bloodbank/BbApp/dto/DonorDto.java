@@ -1,9 +1,5 @@
 package net.Bloodbank.BbApp.dto;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
@@ -20,51 +16,36 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import net.Bloodbank.BbApp.model.BloodGroupType;
+import net.Bloodbank.BbApp.model.BloodGroup;
 
-import net.Bloodbank.BbApp.model.GenderType;
+import net.Bloodbank.BbApp.model.Gender;
+
 @ToString
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DonorRequest {
-
-	
-
+public class DonorDto {
 	private int id;
-	//@NotBlank(message = "Invalid Name: Empty name")
-    @NotNull(message = "Invalid Name: Name cannot be  NULL; enter valid name")
-    @Size(min = 3, max = 30, message = "Invalid Name: Must be of 3 - 30 characters")
-	
-	
+
+	@NotNull(message = "Invalid Name: Name cannot be  NULL; enter valid name")
+	@Size(min = 3, max = 30, message = "Invalid FirstName: Must be of 3 - 30 characters")
 	private String firstName;
 	private String lastName;
-
 	@NotNull(message = "Invalid gender field:  Choose among MALE,FEMALE,OTHERS")
-	 @Enumerated(EnumType.STRING)
-	private  GenderType gender;
-	 //@NotNull(message="is Required")
 	@Enumerated(EnumType.STRING)
-	private BloodGroupType bloodGroupType;
+	private Gender gender;
+	@Enumerated(EnumType.STRING)
+	private BloodGroup bloodGroupType;
 	@Min(value = 18, message = "Invalid Age: It must be a greater than or equal to 18")
 	@Max(value = 60, message = "Invalid Age: It must be less than or equal to 60")
-	
 	private int age;
-	@NotEmpty(message = "Invalid Email") 
-	
-	
-	
+	@Email(message = "Invalid email format")
 	private String eMail;
 	private String address;
 	private String city;
-
-	
-	
-	
-	 @NotBlank(message = "Invalid Phone number: Empty number")
-    @NotNull(message = "Invalid Phone number: Number is NULL")
-    @Pattern(regexp = "^\\d{10}$", message = "Invalid phone number")
+	@NotBlank(message = "Invalid Phone number: Empty number")
+	@NotNull(message = "Invalid Phone number: Number is NULL")
+	@Pattern(regexp = "^\\d{10}$", message = "Invalid phone number")
 	private String contactNumber;
-
 }
