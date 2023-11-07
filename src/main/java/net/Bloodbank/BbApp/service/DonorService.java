@@ -7,7 +7,7 @@ List<DonorDto> findDonorByBloodGroupType(BloodGroup bloodGroupType);
 DonorDto createDonor(DonorDto donorDto);
 DonorDto getDonorById(int id);
 List<DonorDto> getAllDonor();
-DonorDto updateDonor(DonorDto donor);
+DonorDto updateDonor(DonorDto donor , int id);
 void deleteDonor(int id);
  
    

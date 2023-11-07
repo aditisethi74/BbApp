@@ -1,3 +1,4 @@
+
 package net.Bloodbank.BbApp.controller;
 
 import java.util.List;
@@ -14,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 import net.Bloodbank.BbApp.dto.DonorDto;
+import net.Bloodbank.BbApp.exception.ApiError;
+import net.Bloodbank.BbApp.exception.DonorNotFoundException;
 import net.Bloodbank.BbApp.model.BloodGroup;
+import net.Bloodbank.BbApp.model.Donor;
 import net.Bloodbank.BbApp.service.DonorService;
 
 @RestController
@@ -28,10 +32,13 @@ public class DonorControllor {
 	}
 
 	@GetMapping("/donor/{id}")
-	public ResponseEntity<DonorDto> getDonorById(@PathVariable int id) {
+public ResponseEntity<DonorDto> getDonorById(@PathVariable int id) {
+		
 		DonorDto donorDto = donorService.getDonorById(id);
 		return new ResponseEntity<>(donorDto, HttpStatus.OK);
-	}
+		}	
+		
+		
 	@GetMapping("/donor")
 	public ResponseEntity<List<DonorDto>> getAllDonor(@RequestParam(required = false) BloodGroup bloodGroupType) {
 		List<DonorDto> donor = null;
@@ -47,13 +54,26 @@ public class DonorControllor {
 	public ResponseEntity<DonorDto> updateDonor(@PathVariable int id, @RequestBody() @Valid DonorDto donorDto) {
 		donorDto.setId(id);
 
-		DonorDto updatedDonor = donorService.updateDonor(donorDto);
+		DonorDto updatedDonor = donorService.updateDonor(donorDto, id);
 		return new ResponseEntity<>(updatedDonor, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/donor/{id}")
-	public ResponseEntity<String> deleteDonor(@PathVariable int id) {
+	public ResponseEntity<ApiError> deleteDonor(@PathVariable int id) {
 		donorService.deleteDonor(id);
-		return new ResponseEntity<>("Donor successfully deleted!", HttpStatus.OK);
+		return new ResponseEntity (new ApiError("Donor successfully deleted!",true), HttpStatus.OK);
 	}
-}
+	/* public ResponseEntity<String> deleteDonor(@PathVariable("id") int id) {
+	    try {
+	    	
+	 donorService.deleteDonor(id);
+	       
+	      
+	      return new ResponseEntity<>("Donor successfully deleted!",HttpStatus.NO_CONTENT);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	
+	}*/
+	}	
+

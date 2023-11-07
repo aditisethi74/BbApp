@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import net.Bloodbank.BbApp.dto.DonorDto;
+import net.Bloodbank.BbApp.exception.DonorNotFoundException;
 import net.Bloodbank.BbApp.mapper.DonorMapper;
 import net.Bloodbank.BbApp.model.BloodGroup;
 import net.Bloodbank.BbApp.model.Donor;
@@ -32,9 +33,12 @@ public class DonorServiceImpl implements DonorService {
 
 	@Override
 	public DonorDto getDonorById(int id) {
-		Optional<Donor> optionalDonor = donorRepository.findById(id);
-		Donor donor = optionalDonor.get();
-		return DonorMapper.mapToDonorDto(donor);
+		//Optional<Donor> optionalDonor = donorRepository.findById(id);
+		//Donor donor = optionalDonor.get();
+		//return DonorMapper.mapToDonorDto(donor);
+		Donor donor=this.donorRepository.findById(id).orElseThrow(()->new DonorNotFoundException("Donor","Id",id));
+		 return DonorMapper.mapToDonorDto(donor);
+		
 	}
 
 	@Override
@@ -44,7 +48,8 @@ public class DonorServiceImpl implements DonorService {
 	}
 
 	@Override
-	public DonorDto updateDonor(DonorDto donorDto) {
+	public DonorDto updateDonor(DonorDto donorDto ,int id) {
+		Donor donor=this.donorRepository.findById(id).orElseThrow(()->new DonorNotFoundException("Donor","Id",id));
 		Donor existingDonor = donorRepository.findById(donorDto.getId()).get();
 		existingDonor.setAddress(donorDto.getAddress());
 		existingDonor.setAge(donorDto.getAge());
@@ -55,7 +60,8 @@ public class DonorServiceImpl implements DonorService {
 
 	@Override
 	public void deleteDonor(int id) {
-		donorRepository.deleteById(id);
+		Donor donor=this.donorRepository.findById(id).orElseThrow(()->new DonorNotFoundException("Donor","Id",id));
+		donorRepository.delete(donor);
 	}
 
 	public List<DonorDto> findDonorByBloodGroupType(BloodGroup bloodGroupType) {

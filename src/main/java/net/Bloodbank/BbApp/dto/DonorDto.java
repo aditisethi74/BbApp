@@ -36,6 +36,7 @@ public class DonorDto {
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	@Enumerated(EnumType.STRING)
+	@NotNull(message="Invalid bloodGroup Type: choose among A_pos,A_neg,B_pos,B_neg,O_pos,O_neg,AB_pos,AB_neg")
 	private BloodGroup bloodGroupType;
 	@Min(value = 18, message = "Invalid Age: It must be a greater than or equal to 18")
 	@Max(value = 60, message = "Invalid Age: It must be less than or equal to 60")
