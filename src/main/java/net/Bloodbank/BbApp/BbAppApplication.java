@@ -1,4 +1,5 @@
-package net.Bloodbank.BbApp;
+
+ package net.Bloodbank.BbApp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

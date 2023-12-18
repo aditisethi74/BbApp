@@ -9,10 +9,12 @@ DonorDto getDonorById(int id);
 List<DonorDto> getAllDonor();
 DonorDto updateDonor(DonorDto donor , int id);
 void deleteDonor(int id);
- 
+
    
  
  
+
+
  
 }
 

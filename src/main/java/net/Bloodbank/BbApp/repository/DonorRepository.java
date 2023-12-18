@@ -1,5 +1,6 @@
 package net.Bloodbank.BbApp.repository;
 
+
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import net.Bloodbank.BbApp.model.BloodGroup;
